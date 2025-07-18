@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class EditController extends BackendController
 {
-    public function edit($id)
+    public function edit(int $id)
     {
         $data = $this->data;
         $data['page_title'] = 'Update Member';
