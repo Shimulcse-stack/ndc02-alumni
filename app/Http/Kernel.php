@@ -71,7 +71,7 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
 
         // Spatie middleware
-        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'role' => RoleMiddleware::class,
         'permission' => PermissionMiddleware::class,
         'role_or_permission' => RoleOrPermissionMiddleware::class,
 
