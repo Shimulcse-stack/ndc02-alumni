@@ -11,7 +11,7 @@ class MemberListController extends BackendController
     {
         $data = $this->data;
         $data['page_title'] = 'Member List'; 
-        $data['rows'] = User::get();
+        $data['rows'] = User::paginate(20);
         return view('default.member.list', compact('data'));
     }
 }
