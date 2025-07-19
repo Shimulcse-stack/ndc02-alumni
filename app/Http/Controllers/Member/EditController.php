@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class EditController extends BackendController
 {
-    public function edit(int $id)
+    public function edit($id)
     {
         $data = $this->data;
         $data['page_title'] = 'Update Member';
@@ -56,4 +56,3 @@ class EditController extends BackendController
         return redirect()->route('member.index')->with('success', 'Member updated successfully');
     }
 }
-

@@ -25,9 +25,6 @@ class ModifyUsersTable extends Migration
             $table->string('photo_old')->nullable();
             $table->string('photo_new')->nullable();
             $table->string('status')->default('active');
-            $table->string('role')->default('member');
-            $table->string('email')->nullable();
-            $table->string('password')->nullable();
             
         });
     }
