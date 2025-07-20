@@ -55,6 +55,17 @@
                                 <input type="text" name="roll" placeholder="Roll number" class="form-control"
                                     value="{{ old('roll', isset($data['row']) ? $data['row']->roll : '') }}">
                             </div>
+                            <div class="form-group">
+                                <label for="role">Select Role</label>
+                                <select name="role" id="role" class="form-control">
+                                    @foreach($data['roles'] as $role)
+                                        <option value="{{ $role->name }}"
+                                            {{ $data['row']->hasRole($role->name) ? 'selected' : '' }}>
+                                            {{ ucfirst($role->name) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="col-lg-4">
                                 <label class="form-label">Group</label>

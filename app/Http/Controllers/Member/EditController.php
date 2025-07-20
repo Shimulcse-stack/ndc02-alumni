@@ -5,6 +5,7 @@ use App\Http\Controllers\BackendController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 class EditController extends BackendController
 {
@@ -14,6 +15,7 @@ class EditController extends BackendController
         $data['page_title'] = 'Update Member';
 
         $data['row'] = User::findOrFail($id);
+        $data['roles'] = Role::all();
         return view('default.member.form', compact('data'));
     }
 
@@ -53,6 +55,8 @@ class EditController extends BackendController
         }
 
         $row->update($validated);
+        $row->syncRoles([$request->role]);
+
         return redirect()->route('member.index')->with('success', 'Member updated successfully');
     }
 }
