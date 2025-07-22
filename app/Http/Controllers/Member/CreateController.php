@@ -5,6 +5,8 @@ use App\Http\Controllers\BackendController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
+
 
 class CreateController extends BackendController
 {
@@ -12,8 +14,12 @@ class CreateController extends BackendController
 
     public function create()
     {
-        
-        return view('default.member.form');
+    $roles = Role::all(); 
+    $data = [
+        'roles' => $roles,
+        'row' => null,
+    ];
+        return view('default.member.form', compact('data'));
     }
 
     public function store(Request $request)
@@ -35,6 +41,7 @@ class CreateController extends BackendController
             'organization' => 'nullable|string|max:100',
             'photo_old' => 'nullable|image|mimes:jpeg,png,jpg',
             'photo_new' => 'nullable|image|mimes:jpeg,png,jpg',
+
         ]);
 
         $user = new User($validated);
@@ -47,7 +54,8 @@ class CreateController extends BackendController
         $user->password = bcrypt('default_password'); 
         $user->save();
        
-
+        $row->update($validated);
+        $row->syncRoles([$request->role]);
         return redirect()->route('member.index')->with('success', 'Member created successfully');
     }
 }

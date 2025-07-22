@@ -29,11 +29,17 @@
             <div>{{ $data['row']->phone }}</div>
           </div>
         </div>
-
         <div class="col-md-4">
           <div class="bg-light p-2 rounded border">
             <strong>Roll</strong>
             <div>{{ $data['row']->roll }}</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="bg-light p-2 rounded border">
+            <strong>Role</strong>
+            <div>{{ $data['row']->role }}</div>
+            <p>Member</p>
           </div>
         </div>
 

@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/members/{id}', [EditController::class, 'update'])->name('member.update');
         Route::get('/members/{id}/activate', [ActivateController::class, 'activate'])->name('member.activate');
         Route::get('/members/{id}/suspend', [SuspendController::class, 'suspend'])->name('member.suspend');
-        Route::delete('/members/{id}', [DeleteController::class, 'destry'])->name('member.destry');
+        Route::delete('/members/{id}', [DeleteController::class, 'destroy'])->name('member.destroy');
     });
 });
 

@@ -1,5 +1,6 @@
 <?php
 namespace App\Http;
+use App\Http\Middleware\CheckPermission;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\StartSession;
@@ -62,7 +63,8 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'signed' => ValidateSignature::class,
-
+        'permission' => CheckPermission::class,
+        
         // Spatie middleware
         'role' => RoleMiddleware::class,
         'permission' => PermissionMiddleware::class,

@@ -13,13 +13,15 @@ class RolePermissionSeeder extends Seeder
         // Create permissions
         $storeData = Permission::firstOrCreate(['name' => 'store data']);
         $editData = Permission::firstOrCreate(['name' => 'edit data']);
+        $destroyData = Permission::firstOrCreate(['name' => 'destroy data']);
+        $suspendData = Permission::firstOrCreate(['name' => 'suspend data']);
 
-        // Create roles
+       // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $memberRole = Role::firstOrCreate(['name' => 'member']);
 
         // Assign permissions to roles
-        $adminRole->givePermissionTo([$storeData, $editData]);
+        $adminRole->givePermissionTo([$storeData, $editData, $destroyData, $suspendData]);
         $memberRole->givePermissionTo([$storeData]);
     }
 }

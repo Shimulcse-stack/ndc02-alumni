@@ -6,7 +6,11 @@
             <div class="card">
 
                 <div class="card-header bg-white border-0">
-                    <h4 class="fw-bold mb-0 text-dark">{{ isset($data['rows']) ? 'Edit Member' : 'Add Member' }}</h4>
+                    <h4 class="fw-bold mb-0 text-dark"> @if (isset($data['row']))
+                        Edit Member
+                        @else
+                        Add Member
+                        @endif</h4>
                 </div>
 
                 <div class="card-body">
@@ -55,16 +59,28 @@
                                 <input type="text" name="roll" placeholder="Roll number" class="form-control"
                                     value="{{ old('roll', isset($data['row']) ? $data['row']->roll : '') }}">
                             </div>
-
+                            <div class="form-group">
+                                <label for="role">Select Role</label>
+                                <select name="role" id="role" class="form-control">
+                                    @foreach($data['roles'] as $role)
+                                    <option value="{{ $role->name }}"
+                                        {{ ($data['row'] && $data['row']->hasRole($role->name)) ? 'selected' : '' }}>
+                                        {{ ucfirst($role->name) }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-lg-4">
                                 <label class="form-label">Group</label>
                                 <select name="group" class="form-select">
                                     <option value="">Select Group</option>
-                                    <option value="science" @if(!empty($data['row']) && $data['row']->group == 'science')
+                                    <option value="science" @if(!empty($data['row']) && $data['row']->group ==
+                                        'science')
                                         selected="selected" @endif>Science</option>
                                     <option value="arts" @if(!empty($data['row']) && $data['row']->group == 'arts')
                                         selected="selected" @endif>Arts</option>
-                                    <option value="commerce" @if(!empty($data['row']) && $data['row']->group == 'commerce')
+                                    <option value="commerce" @if(!empty($data['row']) && $data['row']->group ==
+                                        'commerce')
                                         selected="selected" @endif>Commerce</option>
                                 </select>
                             </div>
